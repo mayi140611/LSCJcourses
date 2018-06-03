@@ -10,7 +10,7 @@
 在浏览器输入：http://localhost:8080/showfile/webhw05.html
 
 
-![效果图](./1.png)
+![效果图](1.PNG)
 
 ### 问题
 >No 'Access-Control-Allow-Origin' header is present on the requested resource.'
