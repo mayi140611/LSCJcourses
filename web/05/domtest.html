@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>测试dom操作</title>
+        <meta charset="utf-8">
+    </head>
+    <body>
+    
+        <form>
+            <label for="phone">手机号</label>
+            <input id="phone" name="phone" value="" onblur="checkPhone1(this)">
+            <span id="error_msg" style="display:none;color:red;margin-left:5px;">手机号不合法</span>
+        </form>
+       
+        <script>
+            function checkPhone() {
+                var pobj = document.getElementById('phone');
+                var phone = pobj.value;
+                //alert(phone);
+                console.log(phone);
+                if (phone.search(/^(\+\d{2,3})?\d{11}$/) == -1) {
+                    //alert('手机号不合法');
+                    document.getElementById('error_msg').style.display = "";
+                } 
+            }
+
+            function checkPhone1(pobj) {
+                //var pobj = $('#phone');
+                //var phone = pobj.val();
+                var phone = this.value;
+                alert(phone);
+                if (phone.search(/^(\+\d{2,3})?\d{11}$/) == -1) {
+                    $('#error_msg').css('display', '');
+                } else {
+                    $.ajax({
+                        type: "GET",
+                        url: 'http://127.0.0.1:8080/checkphone/' + phone,
+                        dataType: "json",
+                        data: '',
+                        success: function(msg) {
+                            if (msg.HEAD == 'error') {
+                                $('#error_msg').html(msg.BODY);
+                                $('#error_msg').css('display', '');
+                            }
+                        },
+                    });
+                }
+            }
+        </script>
+        <!--<script src="./jQuery-2.1.4.min.js"></script>-->
+        <script src="http://127.0.0.1:8080/showfile/jQuery-2.1.4.min.js"></script>
+    </body>
+</html>

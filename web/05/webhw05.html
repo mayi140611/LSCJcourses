@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<style>
+#myDiv {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -200px;
+    margin-top: -50px;
+}
+.mouseOver{
+    background-color: #708090;
+    color:#FFFAFA;
+}
+
+.mouseOut{
+    background-color: #FFFAFA;
+    color:#000000;
+}
+</style>
+</head>
+<body>
+    <div id="myDiv">
+        <input type="text" size="50" id="keyword" onkeyup="getMoreContents()" onfocus="getMoreContents()" />
+        <input type="button" value="搜索一下" width="50px" />
+        <div id="popDiv">
+            <table id="content_table" bgcolor="#FFFAFA" border="0"
+                cellspacing="0" cellpadding="0">
+                <tbody id="content_table_body">
+                    <!-- 动态数据在这里显示 -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+<script type="text/javascript">
+    function getMoreContents() {
+        var keyword = document.getElementById("keyword").value;
+        if (keyword == "") {
+            clearContent();
+            return;
+        } else {
+           $.ajax({
+                        type: "GET",
+                        url: 'http://127.0.0.1:8080/showtips/' + keyword,
+                        dataType: "json",
+                        data: '',
+                        success: function(msg) {
+							$('#content_table_body').empty()
+                            for (var i=0; i<msg.BODY.length; i++ )
+                            {								
+								$('#content_table_body').append("<tr><td class='cc'>"+msg.BODY[i]+"</td></tr>")
+                            }
+							$('.cc').click(function(){
+							  $('#keyword').val($(this).html())
+							  clearContent();
+							});
+                        },
+                    });
+        }
+    }
+    function clearContent() {
+        var popNode = document.getElementById("popDiv");
+        popNode.style.border = "none";
+        var contentNode = document.getElementById("content_table_body");
+        var len = contentNode.childNodes.length;
+        for (var i = len - 1; i >= 0; i--) {
+            contentNode.removeChild(contentNode.childNodes[i]);
+        }
+    }
+    
+</script>
+        <!--<script src="./jQuery-2.1.4.min.js"></script>-->
+        <script src="http://127.0.0.1:8080/showfile/jQuery-2.1.4.min.js"></script>
+</html>
