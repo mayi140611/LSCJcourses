@@ -20,6 +20,7 @@ class Student(models.Model):
 
     class Meta:
         verbose_name = '学生'
+        verbose_name_plural = '学生信息'
 
 
 class Grade(models.Model):
