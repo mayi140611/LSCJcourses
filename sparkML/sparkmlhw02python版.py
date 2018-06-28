@@ -35,3 +35,10 @@ training = df1.withColumnRenamed('typenameid','label')
 | 1376542|    2|  action|[1.95620442461924...|       2.0|
 | 1376603|    2|  action|[1.95620442461924...|       2.0|
 | 1376792|    2|  action|[1.95620442461924...|       2.0|
+                          
+#模型保存和加载
+>>> model.save('/tmp/testModel')
+2018-06-28 04:57:27 WARN  TaskSetManager:66 - Stage 31 contains a task of very large size (282 KB). The maximum recommended task size is 100 KB.
+>>> savedModel = PipelineModel.load('/tmp/testModel')
+>>> pipeline.save('/temp/pp')
+>>> pp = Pipeline.load('/temp/pp')
