@@ -16,7 +16,7 @@ gnureadline==6.3.3
 ipython==3.2.0
 jsonschema==2.5.1
 matplotlib==1.4.3
-mistune==0.6
+mistune==0.8.1
 mock==1.0.1
 mpld3==0.2
 nltk==3.0.3
