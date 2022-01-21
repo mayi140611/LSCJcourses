@@ -13,7 +13,7 @@ docutils==0.12
 functools32==3.2.3-1
 gensim==0.11.1-1
 gnureadline==6.3.3
-ipython==3.2.0
+ipython==7.16.3
 jsonschema==2.5.1
 matplotlib==1.4.3
 mistune==0.6
